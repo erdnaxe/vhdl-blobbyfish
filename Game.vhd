@@ -55,11 +55,21 @@ architecture Behavioral of Game is
   component Fly
     PORT (
       CLK381Hz : in    STD_LOGIC;
+      reset    : in    STD_LOGIC;
       btn      : in    STD_LOGIC;
       altitude : out   STD_LOGIC_VECTOR(10 downto 0)
     );
   END component ;
-  Signal altitude :  STD_LOGIC_VECTOR(10 downto 0);
+  Signal altitude : STD_LOGIC_VECTOR(10 downto 0);
+
+  -- Collision detection then death
+  component Collision
+    PORT (
+      altitude : in    STD_LOGIC_VECTOR(10 downto 0);
+      reset    : out   STD_LOGIC
+    );
+  END component ;
+  Signal reset : STD_LOGIC;
 
 begin
 
@@ -92,8 +102,16 @@ begin
   FLYMOD : Fly
   port map (
     CLK381Hz => CLK381Hz,
+    reset => reset,
     btn => BTN,
     altitude => altitude
+  );
+
+  -- Collision detection then death
+  DEAMOD : Collision
+  port map (
+    altitude => altitude,
+    reset => reset
   );
 
 end Behavioral;
