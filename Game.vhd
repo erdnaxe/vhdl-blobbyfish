@@ -23,6 +23,8 @@ end Game;
 architecture Behavioral of Game is
   -- Clock divider at 25MHz
   Signal clk_div: STD_LOGIC_VECTOR (16 downto 0);
+  alias CLK25MHz: STD_LOGIC is clk_div(0);
+  alias CLK381Hz: STD_LOGIC is clk_div(16);
 
   -- VGA display
   component vga_controller_640_60
@@ -43,10 +45,10 @@ architecture Behavioral of Game is
   -- Display
   component Display
     PORT (
-      blank    : out   STD_LOGIC; 
-      hcount   : out   STD_LOGIC_VECTOR (10 downto 0); 
-      vcount   : out   STD_LOGIC_VECTOR (10 downto 0);
-      altitude : out   STD_LOGIC_VECTOR (8 downto 0);
+      blank    : in   STD_LOGIC; 
+      hcount   : in   STD_LOGIC_VECTOR (10 downto 0); 
+      vcount   : in   STD_LOGIC_VECTOR (10 downto 0);
+      altitude : in   STD_LOGIC_VECTOR (10 downto 0);
       R        : out   STD_LOGIC_VECTOR (2 downto 0);
       G        : out   STD_LOGIC_VECTOR (2 downto 0);
       B        : out   STD_LOGIC_VECTOR (1 downto 0)
@@ -58,21 +60,21 @@ architecture Behavioral of Game is
     PORT (
       CLK381Hz : in    STD_LOGIC;
       btn      : in    STD_LOGIC;
-      altitude : out   STD_LOGIC_VECTOR(8 downto 0)
+      altitude : out   STD_LOGIC_VECTOR(10 downto 0)
     );
   END component ;
-  Signal altitude :  STD_LOGIC_VECTOR(8 downto 0);
+  Signal altitude :  STD_LOGIC_VECTOR(10 downto 0);
 
 begin
 
   -- Clock divider at 25MHz
-  clk_div <= clk_div+1 when rising_edge(CLK_50MHz);
+  clk_div <= clk_div + 1 when rising_edge(CLK_50MHz);
 
   -- VGA display
-  OUTPUTS : vga_controller_640_60
+  VGAMOD : vga_controller_640_60
   port map (
     rst => '0',  -- keep reset off
-    pixel_clk => clk_div(0),  -- 25Mhz
+    pixel_clk => CLK25MHz,
     HS => HS,
     VS => VS,
     blank => vga_blank,
@@ -81,7 +83,7 @@ begin
   );
 
   -- Display generation
-  DISPLAYCALC : Display
+  DISMOD : Display
   port map (
     blank => vga_blank,
     hcount => vga_hcount,
@@ -93,9 +95,9 @@ begin
   );
 
   -- Fly
-  ALTITUDECALC : Fly
+  FLYMOD : Fly
   port map (
-    CLK381Hz => clk_div(16),
+    CLK381Hz => CLK381Hz,
     btn => BTN,
     altitude => altitude
   );

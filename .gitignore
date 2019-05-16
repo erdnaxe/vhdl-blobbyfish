@@ -32,6 +32,8 @@
 *.txt
 *.stx
 *.gise
+*.bit
+*_bitgen.xwbt
 _ngo
 _xmsgs
 iseconfig
