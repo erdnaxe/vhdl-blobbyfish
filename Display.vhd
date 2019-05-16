@@ -9,23 +9,30 @@ entity Display is
     hcount   : in   STD_LOGIC_VECTOR (10 downto 0); 
     vcount   : in   STD_LOGIC_VECTOR (10 downto 0);
     altitude : in   STD_LOGIC_VECTOR (10 downto 0);
-    R        : out  STD_LOGIC_VECTOR (2 downto 0);
-    G        : out  STD_LOGIC_VECTOR (2 downto 0);
-    B        : out  STD_LOGIC_VECTOR (1 downto 0)
+    color    : out  STD_LOGIC_VECTOR (7 downto 0)
   );
 end Display;
 
 architecture Behavioral of Display is
-  Signal is_bird_X: BOOLEAN;  -- True when x correspond to bird area
-  Signal is_bird_Y: BOOLEAN;  -- True when y correspond to bird area
+  Signal is_bird: BOOLEAN;  -- True when x and y correspond to bird area
 
   Constant bird_X : STD_LOGIC_VECTOR (10 downto 0) := "00010101010";  -- X position of the bird
-  Constant bird_size : STD_LOGIC_VECTOR (10 downto 0) := "00000001111";  -- Size of the bird
-begin
-  is_bird_X <= (hcount < bird_X);
-  is_bird_Y <= (vcount < altitude);
+  Constant bird_size : STD_LOGIC_VECTOR (10 downto 0) := "00000100000";  -- Size of the bird
 
-  R <= "111" when blank='0' and is_bird_X=true else "000";       
-  G <= "111" when blank='0' and is_bird_Y=true else "000";
-  B <= "11" when blank='0' else "00";
+  Signal mcolor: STD_LOGIC_VECTOR (7 downto 0);
+
+  -- Colors RRRGGGBB
+  -- bin(int(0x71/255*2**3)),bin(int(0xc5/255*2**3)),bin(int(0xcf/255*2**2))
+  Constant bird_color : STD_LOGIC_VECTOR (7 downto 0) := "11111110";
+  Constant background_color : STD_LOGIC_VECTOR (7 downto 0) := "01101111";
+begin
+  is_bird <= (hcount > bird_X) and
+             (hcount < bird_X + bird_size) and
+             (vcount > altitude) and
+             (vcount < altitude + bird_size);
+
+  mcolor <= bird_color when is_bird=true else background_color;
+
+  -- Color only in drawing area
+  color <= mcolor when blank='0' else (others=>'0');
 end Behavioral;

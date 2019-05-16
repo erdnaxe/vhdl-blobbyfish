@@ -11,9 +11,7 @@ entity Game is
     -- VGA display
     HS        : out   STD_LOGIC;
     VS        : out   STD_LOGIC;
-    R         : out   STD_LOGIC_VECTOR (2 downto 0);
-    G         : out   STD_LOGIC_VECTOR (2 downto 0);
-    B         : out   STD_LOGIC_VECTOR (1 downto 0);
+    color     : out   STD_LOGIC_VECTOR (7 downto 0);
 
     -- Inputs
     BTN       : in    STD_LOGIC
@@ -49,9 +47,7 @@ architecture Behavioral of Game is
       hcount   : in   STD_LOGIC_VECTOR (10 downto 0); 
       vcount   : in   STD_LOGIC_VECTOR (10 downto 0);
       altitude : in   STD_LOGIC_VECTOR (10 downto 0);
-      R        : out   STD_LOGIC_VECTOR (2 downto 0);
-      G        : out   STD_LOGIC_VECTOR (2 downto 0);
-      B        : out   STD_LOGIC_VECTOR (1 downto 0)
+      color    : out   STD_LOGIC_VECTOR (7 downto 0)
     );
   END component ;
 
@@ -89,9 +85,7 @@ begin
     hcount => vga_hcount,
     vcount => vga_vcount,
     altitude => altitude,
-    R => R,
-    G => G,
-    B => B
+    color => color
   );
 
   -- Fly

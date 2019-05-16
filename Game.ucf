@@ -4,14 +4,14 @@ NET "CLK_50MHz"  LOC = "M6";
 # VGA display
 NET "HS"  LOC = "J14"; 
 NET "VS"  LOC = "K13"; 
-NET "R<0>"  LOC = "C14";
-NET "R<1>"  LOC = "D13";
-NET "R<2>"  LOC = "F13";
-NET "G<0>"  LOC = "F14";
-NET "G<1>"  LOC = "G13";
-NET "G<2>"  LOC = "G14";
-NET "B<0>"  LOC = "H13";
-NET "B<1>"  LOC = "J13";
+NET "color<7>"  LOC = "F13";  # R2
+NET "color<6>"  LOC = "D13";  # R1
+NET "color<5>"  LOC = "C14";  # R0
+NET "color<4>"  LOC = "G14";  # G2
+NET "color<3>"  LOC = "G13";  # G1
+NET "color<2>"  LOC = "F14";  # G0
+NET "color<1>"  LOC = "J13";  # B2
+NET "color<0>"  LOC = "H13";  # B1
 
 # Inputs
 NET "BTN"  LOC = "G12";
