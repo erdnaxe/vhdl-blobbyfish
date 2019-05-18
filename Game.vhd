@@ -36,9 +36,9 @@ architecture Behavioral of Game is
       vcount    : out   STD_LOGIC_VECTOR (10 downto 0)
     );
   END component ;
-  Signal vga_blank:  STD_LOGIC;
-  Signal vga_hcount: STD_LOGIC_VECTOR (10 downto 0);
-  Signal vga_vcount: STD_LOGIC_VECTOR (10 downto 0);
+  Signal blank:  STD_LOGIC;
+  Signal hcount: STD_LOGIC_VECTOR (10 downto 0);
+  Signal vcount: STD_LOGIC_VECTOR (10 downto 0);
 
   -- Display
   component Display
@@ -83,17 +83,17 @@ begin
     pixel_clk => CLK25MHz,
     HS => HS,
     VS => VS,
-    blank => vga_blank,
-    hcount => vga_hcount,
-    vcount => vga_vcount
+    blank => blank,
+    hcount => hcount,
+    vcount => vcount
   );
 
   -- Display generation
   DISMOD : Display
   port map (
-    blank => vga_blank,
-    hcount => vga_hcount,
-    vcount => vga_vcount,
+    blank => blank,
+    hcount => hcount,
+    vcount => vcount,
     altitude => altitude,
     color => color
   );
