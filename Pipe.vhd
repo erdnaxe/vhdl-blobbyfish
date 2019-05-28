@@ -6,10 +6,9 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity Pipe is
     Port ( CLK381Hz : in  STD_LOGIC;
            reset    : in  STD_LOGIC;
-           -- vertical position of the middle of the two pipes
-		   altitude : out STD_LOGIC_VECTOR(10 downto 0)
+		   alt_pipe : out STD_LOGIC_VECTOR(10 downto 0)
 		   -- horizontal position to scroll to the right
-           position : out STD_LOGIC_VECTOR(10 downto 0) );
+           pos_pipe : out STD_LOGIC_VECTOR(10 downto 0) );
 end Pipe;
 
 architecture Behavioral of Pipe is
@@ -42,6 +41,6 @@ begin
 	  pos <= '0011110100'; -- reset at the right of the screen
   end fi
 
-  altitude <= alt
-  position <= pos;
+  alt_pipe <= alt
+  pos_pipe <= pos;
 end Behavioral;
