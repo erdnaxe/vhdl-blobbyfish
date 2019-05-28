@@ -33,29 +33,27 @@ architecture Behavioral of Display is
   Constant sky_height : STD_LOGIC_VECTOR (10 downto 0) := "00110110000";
   -- Size of the bar
   Constant bar_height : STD_LOGIC_VECTOR (10 downto 0) := "00000000100";
-  -- Width of the pipe
-  Constant pipe_width : STD_LOGIC_VECTOR (10 downto 0) := "00000010010";
-  -- Gap between the two pipes
-  Constant pipe_gap   : STD_LOGIC_VECTOR (10 downto 0) := "00000010100";
+  -- Width of one pipe
+  Constant pipe_width : STD_LOGIC_VECTOR (10 downto 0) := "00001000000";
+  -- Gap between two pipes
+  Constant pipe_gap   : STD_LOGIC_VECTOR (10 downto 0) := "00001000000";
 
   -- Colors RRRGGGBB
   -- bin(int(0x71/255*2**3)),bin(int(0xc5/255*2**3)),bin(int(0xcf/255*2**2))
   Constant bird_color : STD_LOGIC_VECTOR (7 downto 0) := "11111110";
   Constant grass_color : STD_LOGIC_VECTOR (7 downto 0) := "11011010";
   Constant bar_color : STD_LOGIC_VECTOR (7 downto 0) := "01111000";
-  Constant pipe_color : STD_LOGIC_VECTOR (7 downto 0) := "00010000"; -- green
+  Constant pipe_color : STD_LOGIC_VECTOR (7 downto 0) := "00010000";
   Constant background_color : STD_LOGIC_VECTOR (7 downto 0) := "01101111";
 begin
   is_bird <= (hcount > bird_X) and
              (hcount < bird_X + bird_size) and
              (vcount > altitude) and
              (vcount < altitude + bird_size);
-
-  is_pipe <= (hcount > pos_pipe - pipe_width) and
+  is_pipe <= (hcount > pos_pipe) and
              (hcount < pos_pipe + pipe_width) and
-             (vcount > alt_pipe + pipe_gap) and
-             (vcount < alt_pipe - pipe_gap);
-
+             ((vcount < alt_pipe) or
+             (vcount > alt_pipe + pipe_gap));
   is_grass <= vcount > sky_height + bar_height;
   is_bar <= vcount > sky_height;
 
@@ -63,6 +61,7 @@ begin
   mcolor <= bird_color when is_bird=true else
             grass_color when is_grass=true else
             bar_color when is_bar=true else
+            pipe_color when is_pipe=true else
             background_color;
 
   -- Color only in drawing area
