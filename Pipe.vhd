@@ -6,6 +6,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity Pipe is
     Port ( CLK191Hz : in  STD_LOGIC;
            reset    : in  STD_LOGIC;
+           started  : in  STD_LOGIC;
            alt_pipe : out STD_LOGIC_VECTOR(10 downto 0);
            -- horizontal position to scroll to the right
            pos_pipe : out STD_LOGIC_VECTOR(10 downto 0) );
@@ -34,7 +35,7 @@ begin
       pos <= pos_def; -- reset at the right of the screen
     else
       if rising_edge(CLK191Hz) then
-        if pos > "00000000000" then
+        if pos > "00000000000" and started='1' then
           pos <= pos - 1; -- scroll to the right at a certain pace
         else
           pos <= pos_def; -- reset at the right of the screen

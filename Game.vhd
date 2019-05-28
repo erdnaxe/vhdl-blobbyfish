@@ -61,16 +61,19 @@ architecture Behavioral of Game is
       CLK48Hz  : in    STD_LOGIC;
       reset    : in    STD_LOGIC;
       btn      : in    STD_LOGIC;
+      started  : out   STD_LOGIC;
       altitude : out   STD_LOGIC_VECTOR(10 downto 0)
     );
   END component ;
   Signal altitude : STD_LOGIC_VECTOR(10 downto 0);
+  Signal started : STD_LOGIC;
 
   -- Pipe
   component Pipe
     PORT (
       CLK191Hz : in    STD_LOGIC;
       reset    : in    STD_LOGIC;
+      started  : in    STD_LOGIC;
       alt_pipe : out   STD_LOGIC_VECTOR(10 downto 0);
       pos_pipe : out   STD_LOGIC_VECTOR(10 downto 0)
     );
@@ -125,6 +128,7 @@ begin
     CLK48Hz => CLK48Hz,
     reset => reset,
     btn => BTN,
+    started => started,
     altitude => altitude
   );
 
@@ -133,6 +137,7 @@ begin
   port map (
     CLK191Hz => CLK191Hz,
     reset => reset,
+    started => started,
     pos_pipe => pos_pipe,
     alt_pipe => alt_pipe
   );

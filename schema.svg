@@ -19,6 +19,36 @@
   <defs
      id="defs2">
     <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker2270"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2268" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1304"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1302"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
        inkscape:stockid="Arrow1Mend"
        orient="auto"
        refY="0"
@@ -306,9 +336,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="297.90453"
-     inkscape:cy="468.98197"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="354.54956"
+     inkscape:cy="278.94267"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -613,7 +643,7 @@
            y="74.986061"
            x="49.278187"
            id="tspan5768"
-           sodipodi:role="line">clk381Hz</tspan></text>
+           sodipodi:role="line">clk48Hz</tspan></text>
     </g>
     <g
        id="g5894"
@@ -665,7 +695,7 @@
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5914)"
-       d="M 94.141218,183.92955 H 130.9831 l 0,14.50432 h 16.0387"
+       d="M 94.141218,180.88684 H 130.9831 v 17.54703 h 16.0387"
        id="path5904"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc" />
@@ -677,24 +707,24 @@
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker6226)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker6646)"
-       d="M 104.87582,183.92955 H 130.9831 V 150.07603"
+       d="M 130.9831,183.92955 V 150.07603"
        id="path6636"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccc" />
+       sodipodi:nodetypes="cc" />
     <text
        id="text6836"
-       y="182.49205"
+       y="179.84622"
        x="111.57806"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"><tspan
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella Italic';text-align:center;text-anchor:middle;stroke-width:0.26458332"
-         y="182.49205"
+         y="179.84622"
          x="111.57806"
          id="tspan6834"
          sodipodi:role="line">altitude</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker8702)"
-       d="M 136.496,208.03843 V 150.109"
+       d="m 136.496,203.79683 0,-53.68783"
        id="path8692"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -845,5 +875,22 @@
            y="74.986061"
            style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella Italic';text-align:center;text-anchor:middle;stroke-width:0.26458332">clk381Hz</tspan></text>
     </g>
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path2266"
+       d="M 94.141218,187.8983 H 118.548 V 205.644 H 73.798646 v 7.40811"
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker2270)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="110.32129"
+       y="186.85768"
+       id="text2604"><tspan
+         sodipodi:role="line"
+         id="tspan2602"
+         x="110.32129"
+         y="186.85768"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella Italic';text-align:center;text-anchor:middle;stroke-width:0.26458332">started</tspan></text>
   </g>
 </svg>
