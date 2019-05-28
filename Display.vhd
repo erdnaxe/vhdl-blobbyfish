@@ -40,7 +40,7 @@ architecture Behavioral of Display is
 
   -- Colors RRRGGGBB
   -- bin(int(0x71/255*2**3)),bin(int(0xc5/255*2**3)),bin(int(0xcf/255*2**2))
-  Constant bird_color : STD_LOGIC_VECTOR (7 downto 0) := "11111110";
+  Constant bird_color : STD_LOGIC_VECTOR (7 downto 0) := "11000100";  -- 1111110
   Constant grass_color : STD_LOGIC_VECTOR (7 downto 0) := "11011010";
   Constant bar_color : STD_LOGIC_VECTOR (7 downto 0) := "01111000";
   Constant pipe_color : STD_LOGIC_VECTOR (7 downto 0) := "00010000";

@@ -20,10 +20,11 @@ end Game;
 
 architecture Behavioral of Game is
   -- Clock divider at 25MHz
-  Signal clk_div: STD_LOGIC_VECTOR (17 downto 0);
+  Signal clk_div: STD_LOGIC_VECTOR (19 downto 0);
   alias CLK25MHz: STD_LOGIC is clk_div(0);
   alias CLK381Hz: STD_LOGIC is clk_div(16);
   alias CLK191Hz: STD_LOGIC is clk_div(17);
+  alias CLK48Hz: STD_LOGIC is clk_div(19);
 
   -- VGA display
   component vga_controller_640_60
@@ -57,7 +58,7 @@ architecture Behavioral of Game is
   -- Fly
   component Fly
     PORT (
-      CLK381Hz : in    STD_LOGIC;
+      CLK48Hz  : in    STD_LOGIC;
       reset    : in    STD_LOGIC;
       btn      : in    STD_LOGIC;
       altitude : out   STD_LOGIC_VECTOR(10 downto 0)
@@ -121,7 +122,7 @@ begin
   -- Fly
   FLYMOD : Fly
   port map (
-    CLK381Hz => CLK381Hz,
+    CLK48Hz => CLK48Hz,
     reset => reset,
     btn => BTN,
     altitude => altitude
