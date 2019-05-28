@@ -4,7 +4,7 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity Collision is
-    Port ( CLK381Hz  : in    STD_LOGIC;
+    Port ( CLK191Hz  : in    STD_LOGIC;
            altitude  : in    STD_LOGIC_VECTOR(10 downto 0);
            alt_pipe1 : in    STD_LOGIC_VECTOR(10 downto 0);
            pos_pipe1 : in    STD_LOGIC_VECTOR(10 downto 0);
@@ -14,6 +14,7 @@ entity Collision is
 end Collision;
 
 architecture Behavioral of Collision is
+
   Signal do_reset : STD_LOGIC;
 
   -- Altitude collision
@@ -28,7 +29,9 @@ architecture Behavioral of Collision is
   Constant bird_size : STD_LOGIC_VECTOR (10 downto 0) := "00000100000";
   Constant pipe_width : STD_LOGIC_VECTOR (10 downto 0) := "00001000000";
   Constant pipe_gap   : STD_LOGIC_VECTOR (10 downto 0) := "00001100000";
+
 begin
+
   altitude_ok <= (min_altitude < altitude) and (altitude < max_altitude);
   pipe1_ok <= (pos_pipe1 < bird_X) or -- pipe is before
               (pos_pipe1 > bird_X + bird_size + pipe_width) or -- pipe is after
@@ -40,5 +43,6 @@ begin
                (altitude + bird_size < alt_pipe2 + pipe_gap)); -- bird is in pipe gap
 
   do_reset <= '0' when altitude_ok and pipe1_ok and pipe2_ok else '1';
-  reset <= do_reset when rising_edge(CLK381Hz);  -- D flip-flop
+  reset <= do_reset when rising_edge(CLK191Hz);  -- D flip-flop
+
 end Behavioral;

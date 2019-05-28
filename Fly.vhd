@@ -12,17 +12,19 @@ entity Fly is
 end Fly;
 
 architecture Behavioral of Fly is
-  -- press to start
-  Signal is_started : STD_LOGIC := '0';
 
-  -- position
+  Signal is_started : STD_LOGIC := '0'; -- Press to start
+
+  -- Position (with default)
   Signal pos_alti : STD_LOGIC_VECTOR(10 downto 0) := "00011110000";
   Constant pos_alti_def : STD_LOGIC_VECTOR(10 downto 0) := "00011110000";
 
-  -- speed
+  -- Speed (with default)
   Signal vit_alti : STD_LOGIC_VECTOR(10 downto 0) := "00000000000";
   Constant vit_alti_def : STD_LOGIC_VECTOR(10 downto 0) := "00000000000";
+
 begin
+
   -- When user press button, increase altitude, else decrease
   btnActive: process(CLK48Hz, reset)
 	begin
@@ -62,4 +64,5 @@ begin
 
   altitude <= pos_alti;
   started <= is_started;
+
 end Behavioral;

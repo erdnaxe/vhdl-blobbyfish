@@ -8,21 +8,19 @@ entity Pipe is
               alt_def : STD_LOGIC_VECTOR(10 downto 0) );
     Port ( CLK191Hz : in  STD_LOGIC;
            reset    : in  STD_LOGIC;
-           started  : in  STD_LOGIC;
-           -- vertical position of the pipe (should be random in the future)
-           alt_pipe : out STD_LOGIC_VECTOR(10 downto 0);
-           -- horizontal position to scroll to the right
-           pos_pipe : out STD_LOGIC_VECTOR(10 downto 0) );
+           started  : in  STD_LOGIC; -- '1' when game is running
+           alt_pipe : out STD_LOGIC_VECTOR(10 downto 0); -- vertical position
+           pos_pipe : out STD_LOGIC_VECTOR(10 downto 0) ); -- horizontal position
 end Pipe;
 
 architecture Behavioral of Pipe is
   Signal pos : STD_LOGIC_VECTOR(10 downto 0);
 
-  -- position to teleport the pipe to the right side
+  -- position to teleport when running into left corner
   Constant pos_bordure : STD_LOGIC_VECTOR(10 downto 0) := "01011000000";
 begin
   -- scroll pipe
-  clockActive: process(CLK191Hz, reset)
+  clockActive: process(CLK191Hz, reset, started)
 	begin
     if reset='1' or started='0' then
       pos <= pos_def; -- reset at the default position

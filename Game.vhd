@@ -19,12 +19,13 @@ entity Game is
 end Game;
 
 architecture Behavioral of Game is
+
   -- Clock divider at 25MHz
-  Signal clk_div: STD_LOGIC_VECTOR (19 downto 0);
-  alias CLK25MHz: STD_LOGIC is clk_div(0);
-  alias CLK381Hz: STD_LOGIC is clk_div(16);
-  alias CLK191Hz: STD_LOGIC is clk_div(17);
-  alias CLK48Hz: STD_LOGIC is clk_div(19);
+  Signal clk_div: STD_LOGIC_VECTOR (27 downto 0);
+  alias CLK25MHz: STD_LOGIC is clk_div(0); -- VGA clock
+  alias CLK191Hz: STD_LOGIC is clk_div(17); -- Pipe scrolling and collision clock
+  alias CLK48Hz: STD_LOGIC is clk_div(19); -- Fly clock
+  alias CLK_BG: STD_LOGIC_VECTOR (6 downto 0) is clk_div(27 downto 21); -- Background animation clock
 
   -- VGA display
   component vga_controller_640_60
@@ -45,6 +46,7 @@ architecture Behavioral of Game is
   -- Display
   component Display
     PORT (
+      CLK_BG    : in   STD_LOGIC_VECTOR (6 downto 0);
       blank     : in   STD_LOGIC;
       hcount    : in   STD_LOGIC_VECTOR (10 downto 0);
       vcount    : in   STD_LOGIC_VECTOR (10 downto 0);
@@ -67,10 +69,10 @@ architecture Behavioral of Game is
       altitude : out   STD_LOGIC_VECTOR(10 downto 0)
     );
   END component ;
-  Signal altitude : STD_LOGIC_VECTOR(10 downto 0);
-  Signal started : STD_LOGIC;
+  Signal altitude : STD_LOGIC_VECTOR(10 downto 0); -- Current altitude of Blobbyfish
+  Signal started : STD_LOGIC; -- '1' when game runs else '0'
 
-  -- Pipe
+  -- Pipes
   component Pipe
     Generic (
       pos_def : STD_LOGIC_VECTOR(10 downto 0);
@@ -92,7 +94,7 @@ architecture Behavioral of Game is
   -- Collision detection then death
   component Collision
     PORT (
-      CLK381Hz : in    STD_LOGIC;
+      CLK191Hz : in    STD_LOGIC;
       altitude : in    STD_LOGIC_VECTOR(10 downto 0);
       alt_pipe1 : in    STD_LOGIC_VECTOR(10 downto 0);
       pos_pipe1 : in    STD_LOGIC_VECTOR(10 downto 0);
@@ -101,7 +103,7 @@ architecture Behavioral of Game is
       reset    : out   STD_LOGIC
     );
   END component ;
-  Signal reset : STD_LOGIC;
+  Signal reset : STD_LOGIC; -- Reset='1' when collision occurs
 
 begin
 
@@ -109,7 +111,7 @@ begin
   clk_div <= clk_div + 1 when rising_edge(CLK_50MHz);
 
   -- VGA display
-  VGAMOD : vga_controller_640_60
+  VM : vga_controller_640_60
   port map (
     rst => '0',  -- keep reset off
     pixel_clk => CLK25MHz,
@@ -121,8 +123,9 @@ begin
   );
 
   -- Display generation
-  DISMOD : Display
+  DM : Display
   port map (
+    CLK_BG => CLK_BG,
     blank => blank,
     hcount => hcount,
     vcount => vcount,
@@ -135,7 +138,7 @@ begin
   );
 
   -- Fly
-  FLYMOD : Fly
+  FM : Fly
   port map (
     CLK48Hz => CLK48Hz,
     reset => reset,
@@ -145,7 +148,7 @@ begin
   );
 
   -- Pipe 1
-  PIPEMOD1 : Pipe
+  PM1 : Pipe
   generic map (
     pos_def => "01011000000", -- (640+64)
     alt_def => "00011110000"  -- 480/2
@@ -158,8 +161,8 @@ begin
     alt_pipe => alt_pipe1
   );
 
-  -- Pipe 2
-  PIPEMOD2 : Pipe
+  -- Pipe 2 (like pipe 1 but transposed)
+  PM2 : Pipe
   generic map (
     pos_def => "00101100000", -- (640+64)/2
     alt_def => "00010110000"  -- 480/2 - 64
@@ -173,9 +176,9 @@ begin
   );
 
   -- Collision detection then death
-  DEAMOD : Collision
+  CM : Collision
   port map (
-    CLK381Hz => CLK381Hz,
+    CLK191Hz => CLK191Hz,
     altitude => altitude,
     pos_pipe1 => pos_pipe1,
     alt_pipe1 => alt_pipe1,
