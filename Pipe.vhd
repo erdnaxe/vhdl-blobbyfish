@@ -4,41 +4,34 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity Pipe is
+    Generic ( pos_def : STD_LOGIC_VECTOR(10 downto 0);
+              alt_def : STD_LOGIC_VECTOR(10 downto 0) );
     Port ( CLK191Hz : in  STD_LOGIC;
            reset    : in  STD_LOGIC;
            started  : in  STD_LOGIC;
+           -- vertical position of the pipe (should be random in the future)
            alt_pipe : out STD_LOGIC_VECTOR(10 downto 0);
            -- horizontal position to scroll to the right
            pos_pipe : out STD_LOGIC_VECTOR(10 downto 0) );
 end Pipe;
 
 architecture Behavioral of Pipe is
+  Signal pos : STD_LOGIC_VECTOR(10 downto 0);
 
-  -- Screen height : 480
-  Constant min_height : STD_LOGIC_VECTOR(10 downto 0) := "00000101000"; -- 40
-  Constant max_height : STD_LOGIC_VECTOR(10 downto 0) := "00110111000"; -- 440
-
-  -- Starts at the right of the screen
-  Constant pos_def : STD_LOGIC_VECTOR(10 downto 0) := "01011000000";
-  Signal pos : STD_LOGIC_VECTOR(10 downto 0) := "01011000000";
-  -- average(40, 440) = 480/2 = 240
-  Signal alt : STD_LOGIC_VECTOR(10 downto 0) := "00011110000";
-
+  -- position to teleport the pipe to the right side
+  Constant pos_bordure : STD_LOGIC_VECTOR(10 downto 0) := "01011000000";
 begin
-  -- Select a random height based on the button press and timer
-  -- For now we just define a single position
-  alt <= "00011110000"; -- average(40, 440) = 480/2 = 240
-
+  -- scroll pipe
   clockActive: process(CLK191Hz, reset)
 	begin
-    if reset='1' then
-      pos <= pos_def; -- reset at the right of the screen
+    if reset='1' or started='0' then
+      pos <= pos_def; -- reset at the default position
     else
       if rising_edge(CLK191Hz) then
         if pos > "00000000000" and started='1' then
           pos <= pos - 1; -- scroll to the right at a certain pace
         else
-          pos <= pos_def; -- reset at the right of the screen
+          pos <= pos_bordure; -- reset at right border
         end if;
       else
         pos <= pos;
@@ -46,6 +39,6 @@ begin
     end if;
 	end process;
 
-  alt_pipe <= alt;
+  alt_pipe <= alt_def;
   pos_pipe <= pos;
 end Behavioral;

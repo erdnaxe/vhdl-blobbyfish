@@ -45,13 +45,15 @@ architecture Behavioral of Game is
   -- Display
   component Display
     PORT (
-      blank    : in   STD_LOGIC; 
-      hcount   : in   STD_LOGIC_VECTOR (10 downto 0); 
-      vcount   : in   STD_LOGIC_VECTOR (10 downto 0);
-      altitude : in   STD_LOGIC_VECTOR (10 downto 0);
-      pos_pipe : in   STD_LOGIC_VECTOR (10 downto 0);
-      alt_pipe : in   STD_LOGIC_VECTOR (10 downto 0);
-      color    : out   STD_LOGIC_VECTOR (7 downto 0)
+      blank     : in   STD_LOGIC;
+      hcount    : in   STD_LOGIC_VECTOR (10 downto 0);
+      vcount    : in   STD_LOGIC_VECTOR (10 downto 0);
+      altitude  : in   STD_LOGIC_VECTOR (10 downto 0);
+      pos_pipe1 : in   STD_LOGIC_VECTOR (10 downto 0);
+      alt_pipe1 : in   STD_LOGIC_VECTOR (10 downto 0);
+      pos_pipe2 : in   STD_LOGIC_VECTOR (10 downto 0);
+      alt_pipe2 : in   STD_LOGIC_VECTOR (10 downto 0);
+      color     : out   STD_LOGIC_VECTOR (7 downto 0)
     );
   END component ;
 
@@ -70,7 +72,11 @@ architecture Behavioral of Game is
 
   -- Pipe
   component Pipe
-    PORT (
+    Generic (
+      pos_def : STD_LOGIC_VECTOR(10 downto 0);
+      alt_def : STD_LOGIC_VECTOR(10 downto 0)
+    );
+    Port (
       CLK191Hz : in    STD_LOGIC;
       reset    : in    STD_LOGIC;
       started  : in    STD_LOGIC;
@@ -78,16 +84,20 @@ architecture Behavioral of Game is
       pos_pipe : out   STD_LOGIC_VECTOR(10 downto 0)
     );
   END component ;
-  Signal pos_pipe : STD_LOGIC_VECTOR(10 downto 0);
-  Signal alt_pipe : STD_LOGIC_VECTOR(10 downto 0);
+  Signal pos_pipe1 : STD_LOGIC_VECTOR(10 downto 0);
+  Signal alt_pipe1 : STD_LOGIC_VECTOR(10 downto 0);
+  Signal pos_pipe2 : STD_LOGIC_VECTOR(10 downto 0);
+  Signal alt_pipe2 : STD_LOGIC_VECTOR(10 downto 0);
 
   -- Collision detection then death
   component Collision
     PORT (
       CLK381Hz : in    STD_LOGIC;
       altitude : in    STD_LOGIC_VECTOR(10 downto 0);
-      alt_pipe : in    STD_LOGIC_VECTOR(10 downto 0);
-      pos_pipe : in    STD_LOGIC_VECTOR(10 downto 0);
+      alt_pipe1 : in    STD_LOGIC_VECTOR(10 downto 0);
+      pos_pipe1 : in    STD_LOGIC_VECTOR(10 downto 0);
+      alt_pipe2 : in    STD_LOGIC_VECTOR(10 downto 0);
+      pos_pipe2 : in    STD_LOGIC_VECTOR(10 downto 0);
       reset    : out   STD_LOGIC
     );
   END component ;
@@ -117,8 +127,10 @@ begin
     hcount => hcount,
     vcount => vcount,
     altitude => altitude,
-    pos_pipe => pos_pipe,
-    alt_pipe => alt_pipe,
+    pos_pipe1 => pos_pipe1,
+    alt_pipe1 => alt_pipe1,
+    pos_pipe2 => pos_pipe2,
+    alt_pipe2 => alt_pipe2,
     color => color
   );
 
@@ -132,14 +144,32 @@ begin
     altitude => altitude
   );
 
-  -- Pipe
-  PIPEMOD : Pipe
+  -- Pipe 1
+  PIPEMOD1 : Pipe
+  generic map (
+    pos_def => "01011000000", -- (640+64)
+    alt_def => "00011110000"  -- 480/2
+  )
   port map (
     CLK191Hz => CLK191Hz,
     reset => reset,
     started => started,
-    pos_pipe => pos_pipe,
-    alt_pipe => alt_pipe
+    pos_pipe => pos_pipe1,
+    alt_pipe => alt_pipe1
+  );
+
+  -- Pipe 2
+  PIPEMOD2 : Pipe
+  generic map (
+    pos_def => "00101100000", -- (640+64)/2
+    alt_def => "00010110000"  -- 480/2 - 64
+  )
+  port map (
+    CLK191Hz => CLK191Hz,
+    reset => reset,
+    started => started,
+    pos_pipe => pos_pipe2,
+    alt_pipe => alt_pipe2
   );
 
   -- Collision detection then death
@@ -147,8 +177,10 @@ begin
   port map (
     CLK381Hz => CLK381Hz,
     altitude => altitude,
-    pos_pipe => pos_pipe,
-    alt_pipe => alt_pipe,
+    pos_pipe1 => pos_pipe1,
+    alt_pipe1 => alt_pipe1,
+    pos_pipe2 => pos_pipe2,
+    alt_pipe2 => alt_pipe2,
     reset => reset
   );
 
