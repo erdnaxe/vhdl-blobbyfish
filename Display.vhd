@@ -9,6 +9,8 @@ entity Display is
     hcount   : in   STD_LOGIC_VECTOR (10 downto 0); 
     vcount   : in   STD_LOGIC_VECTOR (10 downto 0);
     altitude : in   STD_LOGIC_VECTOR (10 downto 0);
+    pos_pipe : in   STD_LOGIC_VECTOR (10 downto 0);
+    alt_pipe : in   STD_LOGIC_VECTOR (10 downto 0);
     color    : out  STD_LOGIC_VECTOR (7 downto 0)
   );
 end Display;
@@ -33,19 +35,27 @@ architecture Behavioral of Display is
   Constant bar_height : STD_LOGIC_VECTOR (10 downto 0) := "00000000100";
   -- Width of the pipe
   Constant pipe_width : STD_LOGIC_VECTOR (10 downto 0) := "00000010010";
+  -- Gap between the two pipes
+  Constant pipe_gap   : STD_LOGIC_VECTOR (10 downto 0) := "00000010100";
 
   -- Colors RRRGGGBB
   -- bin(int(0x71/255*2**3)),bin(int(0xc5/255*2**3)),bin(int(0xcf/255*2**2))
   Constant bird_color : STD_LOGIC_VECTOR (7 downto 0) := "11111110";
   Constant grass_color : STD_LOGIC_VECTOR (7 downto 0) := "11011010";
   Constant bar_color : STD_LOGIC_VECTOR (7 downto 0) := "01111000";
-  Constant pipe_color : STD_LOGIC_VECTOR (7 downto 0) := "";
+  Constant pipe_color : STD_LOGIC_VECTOR (7 downto 0) := "00010000"; -- green
   Constant background_color : STD_LOGIC_VECTOR (7 downto 0) := "01101111";
 begin
   is_bird <= (hcount > bird_X) and
              (hcount < bird_X + bird_size) and
              (vcount > altitude) and
              (vcount < altitude + bird_size);
+  
+  is_pipe <= (hcount > pos_pipe - pipe_width) and
+             (hcount < pos_pipe + pipe_width) and
+             (vcount > alt_pipe + pipe_gap) and
+             (vcount < alt_pipe - pipe_gap);
+
   is_grass <= vcount > sky_height + bar_height;
   is_bar <= vcount > sky_height;
 
