@@ -15,9 +15,39 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="shema.svg">
+   sodipodi:docname="schema.svg">
   <defs
      id="defs2">
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1643"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1641"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1041"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1039"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
     <marker
        inkscape:stockid="Arrow1Mstart"
        orient="auto"
@@ -276,15 +306,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.71000982"
-     inkscape:cx="432.45083"
-     inkscape:cy="429.46619"
+     inkscape:zoom="1"
+     inkscape:cx="490.90117"
+     inkscape:cy="442.53026"
      inkscape:document-units="mm"
-     inkscape:current-layer="g10358"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:measure-start="0,0"
      inkscape:measure-end="0,0"
-     inkscape:snap-global="true"
+     inkscape:snap-global="false"
      inkscape:window-width="1920"
      inkscape:window-height="1052"
      inkscape:window-x="0"
@@ -301,7 +331,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -605,7 +635,7 @@
            id="tspan5715"
            x="70.749168"
            y="142.62755"
-           style="font-size:5.64444447px;text-align:center;text-anchor:middle;stroke-width:0.26458332">Scrolling</tspan></text>
+           style="font-size:5.64444447px;text-align:center;text-anchor:middle;stroke-width:0.26458332">Pipe</tspan></text>
     </g>
     <g
        transform="translate(20.037828,165.14852)"
@@ -635,7 +665,7 @@
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5914)"
-       d="M 94.141218,183.92955 H 130.9831 v 16.21708 h 16.0387"
+       d="M 94.141218,183.92955 H 130.9831 l 0,14.50432 h 16.0387"
        id="path5904"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc" />
@@ -643,7 +673,7 @@
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
        id="path6222"
-       d="M 94.141218,224.25551 H 136.496 v -16.21708 h 10.65755"
+       d="M 94.141218,220.06323 H 136.496 l 0,-16.24082 h 10.65755"
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker6226)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker6646)"
@@ -664,21 +694,21 @@
          sodipodi:role="line">altitude</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker8702)"
-       d="M 136.496,208.03843 V 150.10896"
+       d="M 136.496,208.03843 V 150.109"
        id="path8692"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="111.57806"
-       y="222.97089"
+       x="115.00358"
+       y="225.76575"
        id="text8928"><tspan
          sodipodi:role="line"
          id="tspan8926"
-         x="111.57806"
-         y="222.97089"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella Italic';text-align:center;text-anchor:middle;stroke-width:0.26458332">position</tspan></text>
+         x="115.00358"
+         y="225.76575"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella Italic';text-align:center;text-anchor:middle;stroke-width:0.26458332">alt_pipe</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker9102)"
        d="M 0,180.57573 H 52.637769"
@@ -766,5 +796,28 @@
            id="tspan10354"
            sodipodi:role="line">clk_50MHz</tspan></text>
     </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1041)"
+       d="M 94.141218,227.60934 H 141.193 v -18.78041 h 5.96055"
+       id="path1035"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path1037"
+       d="m 141.193,208.854 -1.3e-4,-58.745"
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker1643)" />
+    <text
+       id="text1639"
+       y="218.21964"
+       x="115.00358"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella Italic';text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         y="218.21964"
+         x="115.00358"
+         id="tspan1637"
+         sodipodi:role="line">pos_pipe</tspan></text>
   </g>
 </svg>
