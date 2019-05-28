@@ -24,7 +24,7 @@ architecture Behavioral of Collision is
   -- Pipe collision
   Signal pipe1_ok : BOOLEAN;
   Signal pipe2_ok : BOOLEAN;
-  Constant bird_X : STD_LOGIC_VECTOR (10 downto 0) := "00010101010";
+  Constant bird_X : STD_LOGIC_VECTOR (10 downto 0) := "00001000000";
   Constant bird_size : STD_LOGIC_VECTOR (10 downto 0) := "00000100000";
   Constant pipe_width : STD_LOGIC_VECTOR (10 downto 0) := "00001000000";
   Constant pipe_gap   : STD_LOGIC_VECTOR (10 downto 0) := "00001100000";

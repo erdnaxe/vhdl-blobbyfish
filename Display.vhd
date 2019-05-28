@@ -29,7 +29,7 @@ architecture Behavioral of Display is
 
   -- ==== Constants ====
   -- X position of the bird
-  Constant bird_X : STD_LOGIC_VECTOR (10 downto 0) := "00010101010";
+  Constant bird_X : STD_LOGIC_VECTOR (10 downto 0) := "00001000000";
   -- Size of the bird
   Constant bird_size : STD_LOGIC_VECTOR (10 downto 0) := "00000100000";
   -- Size of the sky
@@ -46,7 +46,7 @@ architecture Behavioral of Display is
   Constant bird_color : STD_LOGIC_VECTOR (7 downto 0) := "11000100";  -- 1111110
   Constant grass_color : STD_LOGIC_VECTOR (7 downto 0) := "11011010";
   Constant bar_color : STD_LOGIC_VECTOR (7 downto 0) := "01111000";
-  Signal animated_pipe_color : STD_LOGIC_VECTOR (10 downto 0);
+  Signal animated_pipe_color : STD_LOGIC_VECTOR (4 downto 0);
   Signal pipe_color : STD_LOGIC_VECTOR (7 downto 0) := "00010000";
   Constant background_color : STD_LOGIC_VECTOR (7 downto 0) := "01101111";
 begin
