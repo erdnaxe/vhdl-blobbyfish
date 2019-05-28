@@ -20,24 +20,28 @@ architecture Behavioral of Pipe is
 
   -- Starts at the right of the screen
   Signal pos : STD_LOGIC_VECTOR(10 downto 0) := "00111110100";
-begin
-  -- When user press button, increase altitude, else decrease
-  btnActive: process(CLK381Hz, reset)
-	begin
-    if reset='1' then
-      alti <= altitude_def;
-    else
-      if rising_edge(CLK381Hz) then
-        if btn='1' then
-          alti <= alti - 1;
-        else
-          alti <= alti + 1;
-        end if;
-      else
-        alti <= alti;
-      end if;
-    end if;
-	end process;
+  -- average(40, 440) = 480/2 = 240
+  Signal alt : STD_LOGIC_VECTOR(10 downto 0) := "00011110000";
 
-  altitude <= alti;
+begin
+  -- Select a random height based on the button press and timer
+  -- For now we just define a single position
+
+  pos = "00011110000" -- average(40, 440) = 480/2 = 240
+
+  if reset='1' then
+	  pos <= '0011110100'; -- reset at the right of the screen
+  end fi
+
+  -- scroll to the right at a certain pace
+  if rising_edge(CLK381Hz) then
+	  pos <= pos - 1; -- step = 1
+  end fi
+
+  if pos < '00000000000' then
+	  pos <= '0011110100'; -- reset at the right of the screen
+  end fi
+
+  altitude <= alt
+  position <= pos;
 end Behavioral;
