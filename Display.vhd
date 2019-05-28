@@ -50,7 +50,7 @@ begin
              (hcount < bird_X + bird_size) and
              (vcount > altitude) and
              (vcount < altitude + bird_size);
-  
+
   is_pipe <= (hcount > pos_pipe - pipe_width) and
              (hcount < pos_pipe + pipe_width) and
              (vcount > alt_pipe + pipe_gap) and

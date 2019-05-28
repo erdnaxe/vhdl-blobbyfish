@@ -20,9 +20,10 @@ end Game;
 
 architecture Behavioral of Game is
   -- Clock divider at 25MHz
-  Signal clk_div: STD_LOGIC_VECTOR (16 downto 0);
+  Signal clk_div: STD_LOGIC_VECTOR (17 downto 0);
   alias CLK25MHz: STD_LOGIC is clk_div(0);
   alias CLK381Hz: STD_LOGIC is clk_div(16);
+  alias CLK191Hz: STD_LOGIC is clk_div(17);
 
   -- VGA display
   component vga_controller_640_60
@@ -47,6 +48,8 @@ architecture Behavioral of Game is
       hcount   : in   STD_LOGIC_VECTOR (10 downto 0); 
       vcount   : in   STD_LOGIC_VECTOR (10 downto 0);
       altitude : in   STD_LOGIC_VECTOR (10 downto 0);
+      pos_pipe : in   STD_LOGIC_VECTOR (10 downto 0);
+      alt_pipe : in   STD_LOGIC_VECTOR (10 downto 0);
       color    : out   STD_LOGIC_VECTOR (7 downto 0)
     );
   END component ;
@@ -65,14 +68,14 @@ architecture Behavioral of Game is
   -- Pipe
   component Pipe
     PORT (
-      CLK381Hz : in    STD_LOGIC;
+      CLK191Hz : in    STD_LOGIC;
       reset    : in    STD_LOGIC;
-      alt_pipe : out   STD_LOGIC_VECTOR(10 downto 0)
+      alt_pipe : out   STD_LOGIC_VECTOR(10 downto 0);
       pos_pipe : out   STD_LOGIC_VECTOR(10 downto 0)
     );
   END component ;
-  Signal pos : STD_LOGIC_VECTOR(10 downto 0);
-  Signal alt : STD_LOGIC_VECTOR(10 downto 0);
+  Signal pos_pipe : STD_LOGIC_VECTOR(10 downto 0);
+  Signal alt_pipe : STD_LOGIC_VECTOR(10 downto 0);
 
   -- Collision detection then death
   component Collision
@@ -107,6 +110,8 @@ begin
     hcount => hcount,
     vcount => vcount,
     altitude => altitude,
+    pos_pipe => pos_pipe,
+    alt_pipe => alt_pipe,
     color => color
   );
 
@@ -118,16 +123,15 @@ begin
     btn => BTN,
     altitude => altitude
   );
-  
+
   -- Pipe
   PIPEMOD : Pipe
   port map (
-    CLK381Hz => CLK381Hz,
+    CLK191Hz => CLK191Hz,
     reset => reset,
     pos_pipe => pos_pipe,
     alt_pipe => alt_pipe
   );
-
 
   -- Collision detection then death
   DEAMOD : Collision

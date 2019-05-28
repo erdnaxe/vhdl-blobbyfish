@@ -4,10 +4,10 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity Pipe is
-    Port ( CLK381Hz : in  STD_LOGIC;
+    Port ( CLK191Hz : in  STD_LOGIC;
            reset    : in  STD_LOGIC;
-		   alt_pipe : out STD_LOGIC_VECTOR(10 downto 0)
-		   -- horizontal position to scroll to the right
+           alt_pipe : out STD_LOGIC_VECTOR(10 downto 0);
+           -- horizontal position to scroll to the right
            pos_pipe : out STD_LOGIC_VECTOR(10 downto 0) );
 end Pipe;
 
@@ -18,6 +18,7 @@ architecture Behavioral of Pipe is
   Constant max_height : STD_LOGIC_VECTOR(10 downto 0) := "00110111000"; -- 440
 
   -- Starts at the right of the screen
+  Constant pos_def : STD_LOGIC_VECTOR(10 downto 0) := "00111110100";
   Signal pos : STD_LOGIC_VECTOR(10 downto 0) := "00111110100";
   -- average(40, 440) = 480/2 = 240
   Signal alt : STD_LOGIC_VECTOR(10 downto 0) := "00011110000";
@@ -25,22 +26,27 @@ architecture Behavioral of Pipe is
 begin
   -- Select a random height based on the button press and timer
   -- For now we just define a single position
+  alt <= "00011110000"; -- average(40, 440) = 480/2 = 240
 
-  pos = "00011110000" -- average(40, 440) = 480/2 = 240
+  clockActive: process(CLK191Hz, reset)
+	begin
+    if reset='1' then
+      pos <= pos_def; -- reset at the right of the screen
+    else
+      if rising_edge(CLK191Hz) then
+        if pos > "00000000000" then
+          -- scroll to the right at a certain pace
+          pos <= pos - 1;
+        else
+          pos <= pos_def; -- reset at the right of the screen
+          pos <= pos;
+        end if;
+      else
+        pos <= pos;
+      end if;
+    end if;
+	end process;
 
-  if reset='1' then
-	  pos <= '0011110100'; -- reset at the right of the screen
-  end fi
-
-  -- scroll to the right at a certain pace
-  if rising_edge(CLK381Hz) then
-	  pos <= pos - 1; -- step = 1
-  end fi
-
-  if pos < '00000000000' then
-	  pos <= '0011110100'; -- reset at the right of the screen
-  end fi
-
-  alt_pipe <= alt
+  alt_pipe <= alt;
   pos_pipe <= pos;
 end Behavioral;
