@@ -11,5 +11,4 @@ C'est un clone de Flappybird mais en VHDL.
 ## TODO-list
 
   - Randomize pipe altitude,
-  - Collision with pipe,
   - BCD counter for score.

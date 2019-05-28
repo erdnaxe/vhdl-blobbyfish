@@ -82,6 +82,8 @@ architecture Behavioral of Game is
     PORT (
       CLK381Hz : in    STD_LOGIC;
       altitude : in    STD_LOGIC_VECTOR(10 downto 0);
+      alt_pipe : in    STD_LOGIC_VECTOR(10 downto 0);
+      pos_pipe : in    STD_LOGIC_VECTOR(10 downto 0);
       reset    : out   STD_LOGIC
     );
   END component ;
@@ -139,6 +141,8 @@ begin
   port map (
     CLK381Hz => CLK381Hz,
     altitude => altitude,
+    pos_pipe => pos_pipe,
+    alt_pipe => alt_pipe,
     reset => reset
   );
 
