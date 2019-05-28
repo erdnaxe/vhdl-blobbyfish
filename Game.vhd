@@ -62,6 +62,18 @@ architecture Behavioral of Game is
   END component ;
   Signal altitude : STD_LOGIC_VECTOR(10 downto 0);
 
+  -- Pipe
+  component Pipe
+    PORT (
+      CLK381Hz : in    STD_LOGIC;
+      reset    : in    STD_LOGIC;
+      alt_pipe : out   STD_LOGIC_VECTOR(10 downto 0)
+      pos_pipe : out   STD_LOGIC_VECTOR(10 downto 0)
+    );
+  END component ;
+  Signal pos : STD_LOGIC_VECTOR(10 downto 0);
+  Signal alt : STD_LOGIC_VECTOR(10 downto 0);
+
   -- Collision detection then death
   component Collision
     PORT (
@@ -106,6 +118,16 @@ begin
     btn => BTN,
     altitude => altitude
   );
+  
+  -- Pipe
+  PIPEMOD : Pipe
+  port map (
+    CLK381Hz => CLK381Hz,
+    reset => reset,
+    pos_pipe => pos_pipe,
+    alt_pipe => alt_pipe
+  );
+
 
   -- Collision detection then death
   DEAMOD : Collision
