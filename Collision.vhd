@@ -10,7 +10,7 @@ end Collision;
 
 architecture Behavioral of Collision is
   Signal altitude_ok : BOOLEAN;
-  Constant max_altitude : STD_LOGIC_VECTOR(10 downto 0) := "00111110000";
+  Constant max_altitude : STD_LOGIC_VECTOR(10 downto 0) := "00110010000";
   Constant min_altitude : STD_LOGIC_VECTOR(10 downto 0) := "00000000000";
 begin
   altitude_ok <= (min_altitude < altitude) and (altitude < max_altitude);
