@@ -18,8 +18,8 @@ architecture Behavioral of Pipe is
   Constant max_height : STD_LOGIC_VECTOR(10 downto 0) := "00110111000"; -- 440
 
   -- Starts at the right of the screen
-  Constant pos_def : STD_LOGIC_VECTOR(10 downto 0) := "00111110100";
-  Signal pos : STD_LOGIC_VECTOR(10 downto 0) := "00111110100";
+  Constant pos_def : STD_LOGIC_VECTOR(10 downto 0) := "01011000000";
+  Signal pos : STD_LOGIC_VECTOR(10 downto 0) := "01011000000";
   -- average(40, 440) = 480/2 = 240
   Signal alt : STD_LOGIC_VECTOR(10 downto 0) := "00011110000";
 
@@ -35,11 +35,9 @@ begin
     else
       if rising_edge(CLK191Hz) then
         if pos > "00000000000" then
-          -- scroll to the right at a certain pace
-          pos <= pos - 1;
+          pos <= pos - 1; -- scroll to the right at a certain pace
         else
           pos <= pos_def; -- reset at the right of the screen
-          pos <= pos;
         end if;
       else
         pos <= pos;
