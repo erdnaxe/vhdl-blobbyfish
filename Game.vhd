@@ -80,6 +80,7 @@ architecture Behavioral of Game is
   -- Collision detection then death
   component Collision
     PORT (
+      CLK381Hz : in    STD_LOGIC;
       altitude : in    STD_LOGIC_VECTOR(10 downto 0);
       reset    : out   STD_LOGIC
     );
@@ -136,6 +137,7 @@ begin
   -- Collision detection then death
   DEAMOD : Collision
   port map (
+    CLK381Hz => CLK381Hz,
     altitude => altitude,
     reset => reset
   );
