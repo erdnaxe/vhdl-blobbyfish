@@ -307,8 +307,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="490.90117"
-     inkscape:cy="442.53026"
+     inkscape:cx="297.90453"
+     inkscape:cy="468.98197"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -819,5 +819,31 @@
          x="115.00358"
          id="tspan1637"
          sodipodi:role="line">pos_pipe</tspan></text>
+    <g
+       transform="translate(116.90605,145.50011)"
+       id="g1051">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1043"
+         d="m 37.043994,67.063984 2.664097,-4.8546 2.638232,4.80747"
+         style="fill:none;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker3814)"
+         d="m 39.695159,77.365784 v -9.16764"
+         id="path1045"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="49.278187"
+         y="74.986061"
+         id="text1049"><tspan
+           sodipodi:role="line"
+           id="tspan1047"
+           x="49.278187"
+           y="74.986061"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella Italic';text-align:center;text-anchor:middle;stroke-width:0.26458332">clk381Hz</tspan></text>
+    </g>
   </g>
 </svg>
